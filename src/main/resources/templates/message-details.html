@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<hmtl xmlns:th=" http://www.thymeleaf.org">
+    <html lang="en">
+    <header th:insert = "blocks/header :: header"> </header>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="col d-flex justify-content-center">
+            <div class="card" style="width: 70rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Message Body</h5>
+                    <p class="card-text"><span th:text="${message.body}"></span></p>
+                    <a href="/emailRecords" class="btn btn-primary">Back to spam history</a>
+                </div>
+            </div>
+        </div>
+    </body>
+    </html>

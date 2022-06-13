@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<hmtl xmlns:th=" http://www.thymeleaf.org">
+    <header th:insert = "blocks/header :: header"> </header>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    </head>
+    <body>
+    <div class = "container mt-5">
+        <h1>Compose email</h1>
+        <form th:method="POST" th:object="${message}" th:action="@{/sendMessage}">
+            <div class="form-group">
+                <label for="group">Choose group</label>
+                <select class="form-control select" th:field="*{groupId}"  id="group" required>
+                    <option th:each="current_group : ${allGroups}"
+                            th:value="${current_group.id}"
+                            th:text="${current_group.name}">
+                    </option>
+                </select>
+            </div>
+            <div class = "form-group">
+                <p5 class="text-danger">
+                    <span th:text="${noRecipients}"></span>
+                </p5>
+            </div>
+            <div class = "form-group">
+                <label for="subject">Subject</label>
+                <input type = "text" class ="form-control" th:field="*{subject}" id="subject" placeholder="Enter subject" required>
+            </div>
+            <div class="form-group">
+                <label for="body">Email Text</label>
+                <textarea class="form-control" th:field="*{body}" id="body" rows="4" required></textarea>
+            </div>
+            <input type = "submit" class="btn btn-primary" value = "Send Spam"></input>
+            <p5 class="text-danger">
+                <span th:text="${poorConnection}"></span>
+            </p5>
+
+    </body>
+</html>

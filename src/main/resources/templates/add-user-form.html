@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<hmtl xmlns:th=" http://www.thymeleaf.org">
+    <header th:insert = "blocks/header :: header"> </header>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+    <div class = "container mt-5">
+    <h1>User data</h1>
+    <form th:method="POST" th:action="@{/addUser}" th:object="${user}">
+        <div class = "form-group">
+        <label for="email">Email address</label>
+        <input type = "email" class = "form-control" th:field = "*{email}" id="email" placeholder="Enter email" required>
+        </div>
+        <div class = "form-group">
+            <p5 class="text-danger">
+                <span th:text="${emailExists}"></span>
+            </p5>
+        </div>
+        <div class = "form-group">
+        <label for="firstname">First Name</label>
+        <input type = "text" class ="form-control" th:field = "*{firstname}" id="firstname" placeholder="Enter name" required>
+        </div>
+
+        <div class = "form-group">
+        <label for="lastname">Surname</label>
+        <input type = "text" class="form-control" th:field = "*{lastname}" id="lastname" placeholder="Enter surname" required>
+        </div>
+
+        <div class = "form-group">
+        <label for="age">Age</label>
+        <input type = "number" class = "form-control" th:field = "*{age}" id="age" placeholder="Enter age" required>
+        </div>
+
+        <div class="form-group">
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="male" name="male" class="custom-control-input" value="male" th:field="*{gender}">
+                <label class="custom-control-label" for="male">male</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="female" name="female" class="custom-control-input" value="female" th:field="*{gender}">
+                <label class="custom-control-label" for="female">female</label>
+            </div>
+        </div>
+
+        <input type = "submit" class="btn btn-primary" value = "Add User"></input>
+    </form>
+
+</body>
+</html>

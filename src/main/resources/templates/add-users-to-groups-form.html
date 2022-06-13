@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<hmtl xmlns:th=" http://www.thymeleaf.org">
+    <header th:insert = "blocks/header :: header"> </header>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    </head>
+<body>
+<table class = "table table-bordered-table-stripped">
+    <thead class = "thead-light">
+    <tr>
+        <th>Email Address</th>
+        <th>Firstname</th>
+        <th>Surname</th>
+        <th>Age</th>
+        <th>Gender</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each = "current_user : ${nonMembers}">
+        <td th:text = "${current_user.email}"/>
+        <td th:text = "${current_user.firstname}"/>
+        <td th:text = "${current_user.lastname}"/>
+        <td th:text = "${current_user.age}"/>
+        <td th:text = "${current_user.gender}"/>
+        <td>
+            <a th:href="'/addUserToGroup/' + ${groupId} + '/' + ${current_user.id}" class="btn btn-primary" role="button">Add</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<a th:href="'/groupDetails/' + ${groupId}" class="btn btn-primary" role="button">Back to group</a>
+</body>
+</html>

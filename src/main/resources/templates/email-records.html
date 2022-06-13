@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<hmtl xmlns:th=" http://www.thymeleaf.org">
+    <html>
+    <header th:insert = "blocks/header :: header"> </header>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel="stylesheet" href="scripts/tablesort.css">
+    </head>
+    <body>
+        <table class = "table table-bordered-table-stripped table-sortable" id="emailRecords">
+            <thead class = "thead-light">
+            <tr>
+                <th>Message details</th>
+                <th>Group</th>
+                <th>Email subject</th>
+                <th>Timestamp</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each = "current_message : ${allMessages}">
+                <td>
+                    <a th:href = "'/messageDetails/' + ${current_message.id}" />message details</a>
+                </td>
+                <td th:text = "${current_message.groupName}"/>
+                <td th:text = "${current_message.subject}"/>
+                <td th:text = "${current_message.localTime}"/>
+                <td>&nbsp;&nbsp;&nbsp;
+                    <a th:href="'/resendMessage/' + ${current_message.id}" class="btn btn-info" role="button">Resend</a>
+                    <a th:href="'/deleteMessage/' + ${current_message.id}" class ="btn btn-danger" role ="button">Delete</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <script src="scripts/tablesort.js"></script>
+    </body>
+    </html>

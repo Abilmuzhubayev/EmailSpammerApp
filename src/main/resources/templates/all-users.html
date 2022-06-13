@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<hmtl xmlns:th=" http://www.thymeleaf.org">
+    <html>
+    <header th:insert = "blocks/header :: header"> </header>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    </head>
+    <body>
+    <form action="/searchUsers/">
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="">Search by firstname and surname:</span>
+            </div>
+            <div>
+            <input type="text" name = "name"class="form-control" size = 50 >
+            </div>
+            <button type="submit" class="btn btn-light btn-outline-dark btn-sm">Search</button>
+        </div>
+    </form>
+    <br>
+        <table class = "table table-bordered-table-stripped">
+            <thead class = "thead-light">
+                <tr>
+                    <th>Email Address</th>
+                    <th>Firstname</th>
+                    <th>Surname</th>
+                    <th>Age</th>
+                    <th>Gender</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each = "current_user : ${allUsers}">
+                    <td th:text = "${current_user.email}"/>
+                    <td th:text = "${current_user.firstname}"/>
+                    <td th:text = "${current_user.lastname}"/>
+                    <td th:text = "${current_user.age}"/>
+                    <td th:text = "${current_user.gender}"/>
+                    <td>
+                        <a th:href="'/editUser/' + ${current_user.id}" class="btn btn-info" role="button">Edit</a>
+                        &nbsp;&nbsp;&nbsp;
+                        <a th:href="'/deleteUser/' + ${current_user.id}" class ="btn btn-danger" role ="button">Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+    </html>
