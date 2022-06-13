@@ -56,7 +56,7 @@ public class MainController {
     //adds new user from model to the DB
     @PostMapping("/addUser")
     public String addUser(@ModelAttribute("user") UserDTO userDTO, Model model) {
-        if (service.saveUser(userDTO) == false) {
+        if (!service.saveUser(userDTO)) {
             String emailExists = "The email is already in use";
             model.addAttribute("emailExists", emailExists);
             if (userDTO.getId() == 0) {
@@ -87,7 +87,7 @@ public class MainController {
     //saves group from the model to the DB
     @PostMapping("/addGroup")
     public String addGroup(@ModelAttribute("group") GroupDTO groupDTO, Model model) {
-        if (service.saveGroup(groupDTO) == false) {
+        if (!service.saveGroup(groupDTO)) {
             String groupNameExists = "The group name is already in use";
             model.addAttribute("group", groupDTO);
             model.addAttribute("groupNameExists", groupNameExists);
@@ -153,7 +153,7 @@ public class MainController {
     }
 
     //adding a user to a group
-    @RequestMapping("/addUserToGroup/{groupId}/{userId}")
+    @GetMapping("/addUserToGroup/{groupId}/{userId}")
     public String addUserToGroup(Model model, @PathVariable("groupId") int groupId, @PathVariable("userId") int userId) {
         service.createLink(groupId, userId);
         return "redirect:/addToGroup/{groupId}";
